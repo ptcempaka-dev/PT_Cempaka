@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Cempaka - Agen Makanan dan Minuman Berkualitas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variabel CSS */
+        :root {
+            --primary-color: #d35400;
+            --secondary-color: #2c3e50;
+            --accent-color: #f39c12;
+            --light-color: #fef9f0;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --font-main: 'Poppins', sans-serif;
+        }
+        
+        /* Reset & Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background-color: #e67e22;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--secondary-color);
+            position: relative;
+            font-size: 32px;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 10px auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+            margin-left: 5px;
+        }
+        
+        .nav-menu {
+            display: flex;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+        }
+        
+        .nav-menu a {
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .product-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            margin: 0 5px 10px;
+            background-color: transparent;
+            border: 1px solid var(--secondary-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .product-desc {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+            flex-grow: 1;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #e67e22;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-info, .contact-form {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-details li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details li i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            width: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: var(--font-main);
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cart-content {
+            background-color: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            padding: 20px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .close-cart {
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .item-details {
+            flex: 1;
+        }
+        
+        .item-price {
+            font-weight: bold;
+            margin: 0 15px;
+            color: var(--primary-color);
+        }
+        
+        .item-quantity {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            background-color: #eee;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            margin: 0 5px;
+            padding: 3px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .remove-item {
+            color: #e74c3c;
+            cursor: pointer;
+            margin-left: 15px;
+            font-size: 18px;
+        }
+        
+        .cart-total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #219653;
+        }
+        
+        /* Checkout Modal */
+        .checkout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .checkout-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            padding: 30px;
+        }
+        
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            position: relative;
+            color: white;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--primary-color);
+            margin-top: 10px;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .nav-menu {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-menu li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .product-filters {
+                flex-wrap: wrap;
+            }
+            
+            .filter-btn {
+                margin-bottom: 10px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: var(--success-color);
+            color: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1001;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .brand-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <span>PT Cempaka</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#products">Produk</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#contact">Kontak</a></li>
+                <li class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Agen Makanan & Minuman Berkualitas</h1>
+            <p>PT Cempaka menyediakan berbagai bahan makanan dan minuman pilihan dengan kualitas terbaik</p>
+            <a href="#products" class="btn">Lihat Produk <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Produk Kami</h2>
+            <div class="product-filters">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="Makanan Ringan">Makanan Ringan</button>
+                <button class="filter-btn" data-filter="Margarine/Jam">Margarine/Jam</button>
+                <button class="filter-btn" data-filter="Minuman Ringan">Minuman Ringan</button>
+                <button class="filter-btn" data-filter="Minuman dalam Kotak">Minuman dalam Kotak</button>
+
+            </div>
+            <div class="product-grid">
+                <!-- Product items will be generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Kami</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tentang Kami">
+                </div>
+                <div class="about-text">
+                    <h3>PT Cempaka - Distributor Bahan Makanan & Minuman</h3>
+                    <p>PT Cempaka adalah sebuah agen yang menjual bermacam-macam bahan makanan dan minuman seperti roti, mentega, biskuit, minuman sari buah, minuman dalam kaleng, dan berbagai produk makanan lainnya.</p>
+                    <p>Kami telah berpengalaman dalam menyediakan produk-produk berkualitas tinggi kepada pelanggan kami. Setiap produk yang kami distribusikan telah melalui proses seleksi ketat untuk memastikan kualitas dan rasa terbaik.</p>
+                    <p>Dengan komitmen untuk memberikan pelayanan terbaik, PT Cempaka terus berkembang menjadi mitra terpercaya dalam penyediaan bahan makanan dan minuman berkualitas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <ul class="contact-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Jalan Pandan 19, Surabaya</li>
+                        <li><i class="fas fa-phone"></i>085231456716</li>
+                        <li><i class="fas fa-envelope"></i> cempaka@bisnis.ukwms.ac.id</li>
+                        <li><i class="fas fa-clock"></i> Senin - Minggu: 08.00 - 20.00</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/letscempaka.id/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Kirim Pesan</h3>
+                    <form id="messageForm">
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <input type="text" id="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Kirim Pesan <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Keranjang Belanja</h3>
+                <span class="close-cart" id="closeCart">&times;</span>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be generated here -->
+            </div>
+            <div class="cart-total">
+                Total: Rp <span id="cartTotal">0</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Checkout <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-content">
+            <div class="checkout-header">
+                <h3>Checkout Pesanan</h3>
+                <p>Silakan isi data diri Anda untuk menyelesaikan pemesanan</p>
+            </div>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="customerName">Nama Lengkap</label>
+                    <input type="text" id="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerEmail">Email</label>
+                    <input type="email" id="customerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">No. Telepon</label>
+                    <input type="tel" id="customerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Alamat Pengiriman</label>
+                    <textarea id="customerAddress" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="customerNotes">Catatan (opsional)</label>
+                    <textarea id="customerNotes"></textarea>
+                </div>
+                <button type="submit" class="btn">Konfirmasi Pemesanan <i class="fas fa-check"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationText"></span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>PT Cempaka</h3>
+                    <p>Agen makanan dan minuman berkualitas tinggi dengan cita rasa istimewa untuk pelanggan kami.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Tautan Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#products">Produk</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Kategori Produk</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-filter="Makanan Ringan">Makanan Ringan</a></li>
+                        <li><a href="#" data-filter="Margarine/Jam">Margarine/Jam</a></li>
+                        <li><a href="#" data-filter="Minuman Ringan">Minuman Ringan</a></li>
+                        <li><a href="#" data-filter="Minuman dalam Kotak">Minuman dalam Kotak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Ikuti Kami</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 PT Cempaka. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data produk berdasarkan katalog
+        const products = [
+            {
+                id: 1,
+                name: "Roti Sisir Matahari",
+                description: "Setiap helai roti, sepotong rasa hangat",
+                price: 90000,
+                image: "https://images.unsplash.com/photo-1587248720328-4daa08f11b9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Makanan Ringan"
+            },
+            {
+                id: 2,
+                name: "Roti Tawar Francisco",
+                description: "Teman setia setiap pagi",
+                price: 75000,
+                image: "https://images.unsplash.com/photo-1587248720328-4daa08f11b9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Makanan Ringan"
+            },
+            {
+                id: 3,
+                name: "Wafer Cokelat Yakobs",
+                description: "Double Chocolate, Double Happines",
+                price: 270000,
+                image: "https://images.unsplash.com/photo-1587248720328-4daa08f11b9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Makanan Ringan"
+            },
+            {
+                id: 4,
+                name: "Wafer Cokelat UBS",
+                description: "Renyah damam setiap gigitan, menyatu dengan chocolate didalamnya",
+                price: 216000,
+                image: "https://images.unsplash.com/photo-1587248720328-4daa08f11b9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Makanan Ringan"
+            },
+            {
+                id: 5,
+                name: "Marie Biskuit Roman",
+                description: "Renyah berlapis, manis pas disetiap gigitan.",
+                price: 45000,
+                image: "https://images.unsplash.com/photo-1587248720328-4daa08f11b9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "biskuit"
+            },
+            {
+                id: 6,
+                name: "Margarin Lezat",
+                description: "Margarin lezat untuk memasak dan olesan roti.",
+                price: 36000,
+                image: "https://images.unsplash.com/photo-1551383303-63a1eb202035?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Margarine/Jam"
+            },
+            {
+                id: 7,
+                name: "Margarin Lofat",
+                description: "Margarin rendah lemak untuk gaya hidup sehat.",
+                price: 36000,
+                image: "https://images.unsplash.com/photo-1551383303-63a1eb202035?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Margarine/Jam"
+            },
+            {
+                id: 8,
+                name: "Strawberry Jam Manise",
+                description: "Selai strawberry manis dan lezat untuk roti.",
+                price: 90000,
+                image: "https://images.unsplash.com/photo-1615486364407-1a3d6dd32d2a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Margarine/Jam"
+            },
+            {
+                id: 9,
+                name: "Pineapple Jam Manise",
+                description: "Selai nanas dengan rasa manis dan segar.",
+                price: 105000,
+                image: "https://images.unsplash.com/photo-1615486364407-1a3d6dd32d2a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Margarine/Jam"
+            },
+            {
+                id: 10,
+                name: "Peanut Butter Krampy",
+                description: "100% peanuts, artisanel, dengan sentuhan pedas.",
+                price: 252000,
+                image: "https://images.unsplash.com/photo-1625943553835-9b7c2de13b08?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Margarine/Jam"
+            },
+            {
+                id: 11,
+                name: "Peanut Butter Delfi",
+                description: "100% peanuts alami tanpa tambahan gula.",
+                price: 270000,
+                image: "https://images.unsplash.com/photo-1625943553835-9b7c2de13b08?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Margarine/Jam"
+            },
+            {
+                id: 12,
+                name: "Cream Cheese Spread Echo",
+                description: "Cream cheese spread untuk roti dan crackers.",
+                price: 225000,
+                image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Margarine/Jam"
+            },
+            {
+                id: 13,
+                name: "Sari Apel Manalagi",
+                description: "Sari apel manalagi murni dan sehat.",
+                price: 75000,
+                image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Minuman Ringan"
+            },
+            {
+                id: 14,
+                name: "Sinom Fress",
+                description: "Minuman sinom tradisional menyegarkan.",
+                price: 75000,
+                image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Minuman Ringan"
+            },
+            {
+                id: 15,
+                name: "Curcuma Dring",
+                description: "Minuman sinom tradisional menyegarkan.",
+                price: 75000,
+                image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Minuman Ringan"
+            },
+            {
+                id: 16,
+                name: "Misone",
+                description: "Minuman sinom tradisional menyegarkan.",
+                price: 30000,
+                image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Minuman Ringan"
+            },
+            {
+                id: 17,
+                name: "Teh Kotak Fren",
+                description: "Minuman teh kotak menyegarkan.",
+                price: 36000,
+                image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Minuman dalam Kotak"
+            },
+            {
+                id: 18,
+                name: "Kopi Tora-Tora",
+                description: "Minuman kopi siap saji.",
+                price: 36000,
+                image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Minuman dalam Kotak"
+            },
+            {
+                id: 19,
+                name: "Susu Kotak Fren",
+                description: "Susu kotak full cream dan cokelat.",
+                price: 45000,
+                image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Minuman dalam Kotak"
+            },
+            {
+                id: 20,
+                name: "Lychee Juice Fren",
+                description: "Jus leci menyegarkan dalam kemasan.",
+                price: 45000,
+                image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Minuman dalam Kotak"
+            },
+            {
+                id: 21,
+                name: "Orange Juice Fren",
+                description: "Jus jeruk alami tanpa tambahan gula.",
+                price: 45000,
+                image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Minuman dalam Kotak"
+            }
+        ];
+
+        // Variabel global
+        let cart = [];
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartCount = document.querySelector('.cart-count');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const checkoutModal = document.getElementById('checkoutModal');
+        const checkoutForm = document.getElementById('checkoutForm');
+        const productGrid = document.querySelector('.product-grid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notificationText');
+
+        // Tampilkan produk
+        function displayProducts(category = 'all') {
+            productGrid.innerHTML = '';
+            const filteredProducts = category === 'all' 
+                ? products 
+                : products.filter(product => product.category === category);
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+                productCard.innerHTML = `
+                    <div class="brand-tag">PT Cempaka</div>
+                    <img src="${product.image}" alt="${product.name}" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-desc">${product.description}</p>
+                        <p class="product-price">Rp ${product.price.toLocaleString('id-ID')}</p>
+                        <button class="add-to-cart" data-id="${product.id}">Tambah ke Keranjang</button>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+            
+            // Tambahkan event listener untuk tombol tambah ke keranjang
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+        }
+
+        // Tambah produk ke keranjang
+        function addToCart(e) {
+            const productId = parseInt(e.target.getAttribute('data-id'));
+            const product = products.find(item => item.id === productId);
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            showNotification(`${product.name} telah ditambahkan ke keranjang!`);
+        }
+
+        // Tampilkan notifikasi
+        function showNotification(message) {
+            notificationText.textContent = message;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        // Update tampilan keranjang
+        function updateCart() {
+            cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            cartItems.innerHTML = '';
+            let total = 0;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Keranjang belanja kosong</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <div class="item-details">
+                            <h4>${item.name}</h4>
+                            <p>Rp ${item.price.toLocaleString('id-ID')}</p>
+                        </div>
+                        <div class="item-quantity">
+                            <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-id="${item.id}">
+                            <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                        </div>
+                        <div class="item-price">
+                            Rp ${itemTotal.toLocaleString('id-ID')}
+                        </div>
+                        <div class="remove-item" data-id="${item.id}">❌</div>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+            }
+            
+            cartTotal.textContent = total.toLocaleString('id-ID');
+            
+            // Tambahkan event listener untuk tombol kuantitas dan hapus
+            document.querySelectorAll('.increase').forEach(btn => {
+                btn.addEventListener('click', increaseQuantity);
+            });
+            
+            document.querySelectorAll('.decrease').forEach(btn => {
+                btn.addEventListener('click', decreaseQuantity);
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', removeItem);
+            });
+            
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', updateQuantity);
+            });
+        }
+
+        // Fungsi untuk menambah kuantitas
+        function increaseQuantity(e) {
+            const productId = parseInt(e.target.getAttribute('data-id'));
+            const item = cart.find(item => item.id === productId);
+            item.quantity += 1;
+            updateCart();
+        }
+
+        // Fungsi untuk mengurangi kuantitas
+        function decreaseQuantity(e) {
+            const productId = parseInt(e.target.getAttribute('data-id'));
+            const item = cart.find(item => item.id === productId);
+            
+            if (item.quantity > 1) {
+                item.quantity -= 1;
+            } else {
+                cart = cart.filter(item => item.id !== productId);
+            }
+            
+            updateCart();
+        }
+
+        // Fungsi untuk menghapus item
+        function removeItem(e) {
+            const productId = parseInt(e.target.getAttribute('data-id'));
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        // Fungsi untuk update kuantitas melalui input
+        function updateQuantity(e) {
+            const productId = parseInt(e.target.getAttribute('data-id'));
+            const newQuantity = parseInt(e.target.value);
+            
+            if (newQuantity < 1) {
+                cart = cart.filter(item => item.id !== productId);
+            } else {
+                const item = cart.find(item => item.id === productId);
+                item.quantity = newQuantity;
+            }
+            
+            updateCart();
+        }
+
+        // Fungsi untuk mengirim email (simulasi)
+        function sendEmail(orderData) {
+            // Dalam implementasi nyata, ini akan terhubung ke server dan API email
+            console.log('Mengirim email konfirmasi ke:', orderData.email);
+            console.log('Detail pesanan:', orderData);
+            
+            // Simulasi pengiriman email
+            showNotification(`Terima kasih ${orderData.name}! Pesanan Anda telah diterima. Detail pesanan telah dikirim ke email: ${orderData.email}`);
+        }
+
+        // Event Listeners
+        cartIcon.addEventListener('click', () => {
+            cartModal.style.display = 'flex';
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showNotification('Keranjang belanja kosong!');
+                return;
+            }
+            
+            cartModal.style.display = 'none';
+            checkoutModal.style.display = 'flex';
+        });
+
+        checkoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const orderData = {
+                name: document.getElementById('customerName').value,
+                email: document.getElementById('customerEmail').value,
+                phone: document.getElementById('customerPhone').value,
+                address: document.getElementById('customerAddress').value,
+                notes: document.getElementById('customerNotes').value,
+                items: cart,
+                total: cart.reduce((total, item) => total + (item.price * item.quantity), 0),
+                orderDate: new Date().toLocaleString('id-ID')
+            };
+            
+            // Kirim email konfirmasi
+            sendEmail(orderData);
+            
+            // Reset keranjang dan form
+            cart = [];
+            updateCart();
+            checkoutForm.reset();
+            checkoutModal.style.display = 'none';
+        });
+
+        // Filter produk
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                displayProducts(btn.getAttribute('data-filter'));
+            });
+        });
+
+        // Filter produk dari footer
+        document.querySelectorAll('.footer-links a[data-filter]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const filter = link.getAttribute('data-filter');
+                
+                filterBtns.forEach(b => b.classList.remove('active'));
+                document.querySelector(`.filter-btn[data-filter="${filter}"]`).classList.add('active');
+                
+                displayProducts(filter);
+                
+                // Scroll ke bagian produk
+                document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Tutup modal saat klik di luar area konten
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+            if (e.target === checkoutModal) {
+                checkoutModal.style.display = 'none';
+            }
+        });
+
+        // Validasi form kontak
+        document.getElementById('messageForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showNotification('Pesan Anda telah terkirim! Kami akan membalasnya segera.');
+            e.target.reset();
+        });
+
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', () => {
+            displayProducts();
+            updateCart();
+            
+            // Tambahkan smooth scrolling untuk navigasi
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    if (this.getAttribute('href') !== '#') {
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
