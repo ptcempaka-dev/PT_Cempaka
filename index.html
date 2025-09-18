@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PT Cempaka - Agen Makanan dan Minuman Berkualitas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
     <style>
         /* Variabel CSS */
@@ -30,6 +31,10 @@
             line-height: 1.6;
             color: #333;
             background-color: #f9f9f9;
+            background-image: linear-gradient(to bottom, rgba(255,249,242,0.8) 0%, rgba(255,255,255,0.8) 100%), url('https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
         }
         
         a {
@@ -49,18 +54,21 @@
         
         .btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: var(--primary-color);
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
             font-weight: 500;
+            font-size: 16px;
         }
         
         .btn:hover {
             background-color: #e67e22;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .btn:disabled {
@@ -87,7 +95,7 @@
         
         /* Header Styles */
         header {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
@@ -154,11 +162,11 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1556761223-4c4282c73f77?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
         }
         
@@ -170,17 +178,19 @@
         .hero h1 {
             font-size: 48px;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
         .hero p {
             font-size: 20px;
             margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         
         /* Products Section */
         .products {
             padding: 80px 0;
-            background-color: var(--light-color);
+            background-color: rgba(254, 249, 240, 0.9);
         }
         
         .product-filters {
@@ -216,8 +226,8 @@
             background-color: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -225,6 +235,7 @@
         
         .product-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         
         .product-img {
@@ -262,7 +273,7 @@
         
         .add-to-cart {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: var(--primary-color);
             color: white;
             border: none;
@@ -279,7 +290,7 @@
         /* About Section */
         .about {
             padding: 80px 0;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.9);
         }
         
         .about-content {
@@ -292,6 +303,7 @@
             flex: 1;
             border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .about-img img {
@@ -307,7 +319,7 @@
         /* Contact Section */
         .contact {
             padding: 80px 0;
-            background-color: var(--light-color);
+            background-color: rgba(254, 249, 240, 0.9);
         }
         
         .contact-container {
@@ -317,6 +329,10 @@
         
         .contact-info, .contact-form {
             flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
         .contact-info h3 {
@@ -329,7 +345,7 @@
         }
         
         .contact-details li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
         }
@@ -338,6 +354,7 @@
             margin-right: 10px;
             color: var(--primary-color);
             width: 20px;
+            font-size: 18px;
         }
         
         .form-group {
@@ -346,20 +363,30 @@
         
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 500;
+            color: var(--secondary-color);
         }
         
-        .form-group input, .form-group textarea {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
-            padding: 10px;
+            padding: 12px 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-family: var(--font-main);
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(211, 84, 0, 0.1);
         }
         
         .form-group textarea {
             height: 150px;
+            resize: vertical;
         }
         
         /* Cart Modal */
@@ -381,9 +408,10 @@
             width: 90%;
             max-width: 600px;
             border-radius: 8px;
-            padding: 20px;
+            padding: 25px;
             max-height: 80vh;
             overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .cart-header {
@@ -391,7 +419,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
             border-bottom: 1px solid #ddd;
         }
         
@@ -399,6 +427,11 @@
             font-size: 24px;
             cursor: pointer;
             color: #777;
+            transition: color 0.3s;
+        }
+        
+        .close-cart:hover {
+            color: var(--primary-color);
         }
         
         .cart-items {
@@ -409,7 +442,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #eee;
         }
         
@@ -429,22 +462,27 @@
         }
         
         .quantity-btn {
-            width: 25px;
-            height: 25px;
-            background-color: #eee;
-            border: none;
+            width: 28px;
+            height: 28px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
             border-radius: 4px;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: all 0.2s;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #e0e0e0;
         }
         
         .quantity-input {
             width: 40px;
             text-align: center;
-            margin: 0 5px;
-            padding: 3px;
+            margin: 0 8px;
+            padding: 5px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
@@ -454,6 +492,11 @@
             cursor: pointer;
             margin-left: 15px;
             font-size: 18px;
+            transition: color 0.3s;
+        }
+        
+        .remove-item:hover {
+            color: #c0392b;
         }
         
         .cart-total {
@@ -462,6 +505,8 @@
             font-weight: bold;
             margin-bottom: 20px;
             color: var(--secondary-color);
+            padding-top: 15px;
+            border-top: 2px solid #eee;
         }
         
         .checkout-btn {
@@ -502,11 +547,12 @@
             border-radius: 8px;
             padding: 30px;
             position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .checkout-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         /* Loading Spinner */
@@ -517,7 +563,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             z-index: 10;
             justify-content: center;
             align-items: center;
@@ -532,7 +578,7 @@
             border-top: 4px solid var(--primary-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         @keyframes spin {
@@ -573,6 +619,10 @@
             margin-bottom: 10px;
         }
         
+        .footer-links a {
+            transition: color 0.3s;
+        }
+        
         .footer-links a:hover {
             color: var(--primary-color);
         }
@@ -602,51 +652,6 @@
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 14px;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-            }
-            
-            .nav-menu {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .nav-menu li {
-                margin: 5px 10px;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .contact-container {
-                flex-direction: column;
-            }
-            
-            .product-filters {
-                flex-wrap: wrap;
-            }
-            
-            .filter-btn {
-                margin-bottom: 10px;
-            }
-            
-            .section-title {
-                font-size: 28px;
-            }
         }
         
         /* Notification */
@@ -685,6 +690,88 @@
             border-radius: 4px;
             font-size: 12px;
             font-weight: bold;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .nav-menu {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-menu li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .product-filters {
+                flex-wrap: wrap;
+            }
+            
+            .filter-btn {
+                margin-bottom: 10px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .form-group input, .form-group textarea, .form-group select {
+                padding: 10px 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .btn {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info, .contact-form {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -901,14 +988,14 @@
         // Inisialisasi EmailJS dengan User ID
         emailjs.init("YOUR_PUBLIC_KEY"); // Ganti dengan Public Key EmailJS Anda
         
-        // Data produk berdasarkan katalog dengan gambar yang lebih baik
+        // Data produk dengan gambar yang sesuai untuk setiap kategori
         const products = [
             {
                 id: 1,
                 name: "Roti Sisir Matahari",
                 description: "Setiap helai roti, sepotong rasa hangat",
                 price: 90000,
-                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "data:image/jpeg;base64,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",
                 category: "Makanan Ringan"
             },
             {
@@ -916,7 +1003,7 @@
                 name: "Roti Tawar Francisco",
                 description: "Teman setia setiap pagi",
                 price: 75000,
-                image: "https://images.unsplash.com/photo-1586448900407-7397af48d116?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://cnc-magazine.oramiland.com/parenting/original_images/Roti_Tawar_Fluffy.png",
                 category: "Makanan Ringan"
             },
             {
@@ -924,7 +1011,7 @@
                 name: "Wafer Cokelat Yakobs",
                 description: "Double Chocolate, Double Happines",
                 price: 270000,
-                image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://st3.depositphotos.com/32475932/34623/i/450/depositphotos_346233032-stock-photo-broken-sweet-chocolate-waffles-isolated.jpg",
                 category: "Makanan Ringan"
             },
             {
@@ -932,7 +1019,7 @@
                 name: "Wafer Cokelat UBS",
                 description: "Renyah damam setiap gigitan, menyatu dengan chocolate didalamnya",
                 price: 216000,
-                image: "https://images.unsplash.com/photo-1623334044303-241021148842?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://www.nationaldaycalendar.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cg_faces:center%2Cq_auto:eco%2Cw_768/MjA3NDA0MzIyNjQyNzMyNDQ3/website-feature---national-chocolate-wafer-day--july-3.png",
                 category: "Makanan Ringan"
             },
             {
@@ -940,7 +1027,7 @@
                 name: "Marie Biskuit Roman",
                 description: "Renyah berlapis, manis pas disetiap gigitan.",
                 price: 45000,
-                image: "https://images.unsplash.com/photo-1558961360-f4b9efb0e9e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://arti-assets.sgp1.cdn.digitaloceanspaces.com/renyswalayanku/products/32d85171-7aaf-48e2-b037-6e53160a8247.jpg",
                 category: "Makanan Ringan"
             },
             {
@@ -948,7 +1035,7 @@
                 name: "Margarin Lezat",
                 description: "Margarin lezat untuk memasak dan olesan roti.",
                 price: 36000,
-                image: "https://images.unsplash.com/photo-1589985270826-4b7fe135a9c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://ds393qgzrxwzn.cloudfront.net/resize/m500x500/cat1/img/images/0/6Kkd1UoUX8.jpg",
                 category: "Margarine/Jam"
             },
             {
@@ -956,7 +1043,7 @@
                 name: "Margarin Lofat",
                 description: "Margarin rendah lemak untuk gaya hidup sehat.",
                 price: 36000,
-                image: "https://images.unsplash.com/photo-1551383303-63a1eb202035?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://assets.palsgaard.com/media/media/h3wkx5dq/how-to-make-low-fat-margarine-spreads-with-only-10-pct-fat-with-palsgaard-emulsifiers.jpg?format=webp&quality=80",
                 category: "Margarine/Jam"
             },
             {
@@ -964,7 +1051,7 @@
                 name: "Strawberry Jam Manise",
                 description: "Selai strawberry manis dan lezat untuk roti.",
                 price: 90000,
-                image: "https://images.unsplash.com/photo-1586201375761347-1a93cc467e96?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://daenskitchen.com/wp-content/uploads/2025/03/Strawberry-Jam-Featured-1200.jpg",
                 category: "Margarine/Jam"
             },
             {
@@ -972,7 +1059,7 @@
                 name: "Pineapple Jam Manise",
                 description: "Selai nanas dengan rasa manis dan segar.",
                 price: 105000,
-                image: "https://images.unsplash.com/photo-1615486364407-1a3d6dd32d2a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://www.accidentalhappybaker.com/wp-content/uploads/2016/02/comprszpineapplejam.jpeg",
                 category: "Margarine/Jam"
             },
             {
@@ -980,7 +1067,7 @@
                 name: "Peanut Butter Krampy",
                 description: "100% peanuts, artisanel, dengan sentuhan pedas.",
                 price: 252000,
-                image: "https://images.unsplash.com/photo-1625943553835-9b7c2de13b08?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://images.getrecipekit.com/20230102102018-peanut_butter_01_520x500.webp?aspect_ratio=1:1&quality=90&",
                 category: "Margarine/Jam"
             },
             {
@@ -988,7 +1075,7 @@
                 name: "Peanut Butter Delfi",
                 description: "100% peanuts alami tanpa tambahan gula.",
                 price: 270000,
-                image: "https://images.unsplash.com/photo-1594489573454-3a9e7b2c4ed3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://cookieandkate.com/images/2025/01/peanut-butter-recipe.jpg",
                 category: "Margarine/Jam"
             },
             {
@@ -996,7 +1083,7 @@
                 name: "Cream Cheese Spread Echo",
                 description: "Cream cheese spread untuk roti dan crackers.",
                 price: 225000,
-                image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://thebananadiaries.com/wp-content/uploads/2023/05/vegan-cream-cheese-recipe_3395.jpg",
                 category: "Margarine/Jam"
             },
             {
@@ -1004,7 +1091,7 @@
                 name: "Sari Apel Manalagi",
                 description: "Sari apel manalagi murni dan sehat.",
                 price: 75000,
-                image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://cdn0-production-images-kly.akamaized.net/6foSbMErKbHHTJQLvFh7iknjDfc=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/1456153/original/071091800_1483451163-ProjectImages_Jus-Apel-untuk-Mengatasi-Anak-Diare.jpg",
                 category: "Minuman Ringan"
             },
             {
@@ -1012,7 +1099,7 @@
                 name: "Sinom Fress",
                 description: "Minuman sinom tradisional menyegarkan.",
                 price: 75000,
-                image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://cdn.rri.co.id/berita/Mataram/o/1724652071476-photo/tnufl4x9lpmfts8.jpeg",
                 category: "Minuman Ringan"
             },
             {
@@ -1020,15 +1107,15 @@
                 name: "Curcuma Dring",
                 description: "Minuman sinom tradisional menyegarkan.",
                 price: 75000,
-                image: "https://images.unsplash.com/photo-1628245221620-2f47a544a827?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://www.lanacion.com.ar/resizer/v2/cuales-son-los-beneficios-de-la-leche-FGXUC7BWGJHIBMIY34BRO6WQXE.jpg?auth=edd0338550b85f6798dfb595e28577d13e19b8d0b4f41d1a87c153283daa16d3&width=420&height=280&quality=70&smart=true",
                 category: "Minuman Ringan"
             },
             {
                 id: 16,
                 name: "Misone",
-                description: "Minuman sinom tradisional menyegarkan.",
+                description: "Minuman berenergi yang menambahkan semangat dan sensasi yang menyegarkan.",
                 price: 30000,
-                image: "https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/fe1d68196730489.6625141d1ea70.jpg",
                 category: "Minuman Ringan"
             },
             {
@@ -1036,31 +1123,31 @@
                 name: "Teh Kotak Fren",
                 description: "Minuman teh kotak menyegarkan.",
                 price: 36000,
-                image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://assets-pergikuliner.com/uploads/bootsy/image/20515/Es_Teh_Manis__idntimes.com_.png",
                 category: "Minuman dalam Kotak"
             },
             {
                 id: 18,
                 name: "Kopi Tora-Tora",
-                description: "Minuman kopi siap saji.",
+                description: "Minuman kopi meningkatkan fokus dan energi",
                 price: 36000,
-                image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg2GTWf808mTNINclJl1VO_ish1iPGii_DjA&s",
                 category: "Minuman dalam Kotak"
             },
             {
                 id: 19,
                 name: "Susu Kotak Fren",
-                description: "Susu kotak full cream dan cokelat.",
+                description: "Kesegaran susu sapi murni langsung dari peternakan, diproses secara higienis untuk menjaga kemurnian rasa dan kandungan gizinya.",
                 price: 45000,
-                image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://cdns.klimg.com/merdeka.com/i/w/news/2021/03/19/1286628/content_images/670x335/20210319114629-2-resep-minuman-kreasi-susu-006-kurnia-azizah.jpg",
                 category: "Minuman dalam Kotak"
             },
             {
                 id: 20,
                 name: "Lychee Juice Fren",
-                description: "Jus leci menyegarkan dalam kemasan.",
+                description: "Manis dengan sedikit sentuhan asam, memberikan sensasi segar yang luar biasa.",
                 price: 45000,
-                image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://cdn.idntimes.com/content-images/community/2023/08/lychee-juice-lychee-fruit-e19c76cf1b28908665001625bb727ae6-44707db40903529c9fb835d6df09cb51.jpg",
                 category: "Minuman dalam Kotak"
             },
             {
@@ -1068,7 +1155,7 @@
                 name: "Orange Juice Fren",
                 description: "Jus jeruk alami tanpa tambahan gula.",
                 price: 45000,
-                image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/11/21085338/ini-cara-mudah-membuat-jus-jeruk-segar-dan-kaya-nutrisi-halodoc.jpg.webp",
                 category: "Minuman dalam Kotak"
             }
         ];
