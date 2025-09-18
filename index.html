@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PT Cempaka - Agen Makanan dan Minuman Berkualitas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
     <style>
         /* Variabel CSS */
         :root {
@@ -60,6 +61,11 @@
         
         .btn:hover {
             background-color: #e67e22;
+        }
+        
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
         }
         
         .section-title {
@@ -148,7 +154,7 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1556761223-4c4282c73f77?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
@@ -214,6 +220,7 @@
             transition: transform 0.3s;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         
         .product-card:hover {
@@ -494,11 +501,43 @@
             max-width: 500px;
             border-radius: 8px;
             padding: 30px;
+            position: relative;
         }
         
         .checkout-header {
             text-align: center;
             margin-bottom: 20px;
+        }
+        
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 8px;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         /* Footer */
@@ -689,7 +728,6 @@
                 <button class="filter-btn" data-filter="Margarine/Jam">Margarine/Jam</button>
                 <button class="filter-btn" data-filter="Minuman Ringan">Minuman Ringan</button>
                 <button class="filter-btn" data-filter="Minuman dalam Kotak">Minuman dalam Kotak</button>
-
             </div>
             <div class="product-grid">
                 <!-- Product items will be generated here -->
@@ -703,7 +741,7 @@
             <h2 class="section-title">Tentang Kami</h2>
             <div class="about-content">
                 <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tentang Kami">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Gudang PT Cempaka">
                 </div>
                 <div class="about-text">
                     <h3>PT Cempaka - Distributor Bahan Makanan & Minuman</h3>
@@ -778,6 +816,10 @@
     <!-- Checkout Modal -->
     <div class="checkout-modal" id="checkoutModal">
         <div class="checkout-content">
+            <div class="loading-spinner" id="checkoutSpinner">
+                <div class="spinner"></div>
+                <p>Mengirim pesanan...</p>
+            </div>
             <div class="checkout-header">
                 <h3>Checkout Pesanan</h3>
                 <p>Silakan isi data diri Anda untuk menyelesaikan pemesanan</p>
@@ -850,20 +892,23 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 PT Cempaka. All Rights Reserved.</p>
+                <p>&copy; 2020 PT Cempaka. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Data produk berdasarkan katalog
+        // Inisialisasi EmailJS dengan User ID
+        emailjs.init("YOUR_PUBLIC_KEY"); // Ganti dengan Public Key EmailJS Anda
+        
+        // Data produk berdasarkan katalog dengan gambar yang lebih baik
         const products = [
             {
                 id: 1,
                 name: "Roti Sisir Matahari",
                 description: "Setiap helai roti, sepotong rasa hangat",
                 price: 90000,
-                image: "https://images.unsplash.com/photo-1587248720328-4daa08f11b9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
                 category: "Makanan Ringan"
             },
             {
@@ -871,7 +916,7 @@
                 name: "Roti Tawar Francisco",
                 description: "Teman setia setiap pagi",
                 price: 75000,
-                image: "https://images.unsplash.com/photo-1587248720328-4daa08f11b9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://images.unsplash.com/photo-1586448900407-7397af48d116?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
                 category: "Makanan Ringan"
             },
             {
@@ -879,7 +924,7 @@
                 name: "Wafer Cokelat Yakobs",
                 description: "Double Chocolate, Double Happines",
                 price: 270000,
-                image: "https://images.unsplash.com/photo-1587248720328-4daa08f11b9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
                 category: "Makanan Ringan"
             },
             {
@@ -887,7 +932,7 @@
                 name: "Wafer Cokelat UBS",
                 description: "Renyah damam setiap gigitan, menyatu dengan chocolate didalamnya",
                 price: 216000,
-                image: "https://images.unsplash.com/photo-1587248720328-4daa08f11b9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://images.unsplash.com/photo-1623334044303-241021148842?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
                 category: "Makanan Ringan"
             },
             {
@@ -895,15 +940,15 @@
                 name: "Marie Biskuit Roman",
                 description: "Renyah berlapis, manis pas disetiap gigitan.",
                 price: 45000,
-                image: "https://images.unsplash.com/photo-1587248720328-4daa08f11b9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                category: "biskuit"
+                image: "https://images.unsplash.com/photo-1558961360-f4b9efb0e9e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "Makanan Ringan"
             },
             {
                 id: 6,
                 name: "Margarin Lezat",
                 description: "Margarin lezat untuk memasak dan olesan roti.",
                 price: 36000,
-                image: "https://images.unsplash.com/photo-1551383303-63a1eb202035?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://images.unsplash.com/photo-1589985270826-4b7fe135a9c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
                 category: "Margarine/Jam"
             },
             {
@@ -919,7 +964,7 @@
                 name: "Strawberry Jam Manise",
                 description: "Selai strawberry manis dan lezat untuk roti.",
                 price: 90000,
-                image: "https://images.unsplash.com/photo-1615486364407-1a3d6dd32d2a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://images.unsplash.com/photo-1586201375761347-1a93cc467e96?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
                 category: "Margarine/Jam"
             },
             {
@@ -943,7 +988,7 @@
                 name: "Peanut Butter Delfi",
                 description: "100% peanuts alami tanpa tambahan gula.",
                 price: 270000,
-                image: "https://images.unsplash.com/photo-1625943553835-9b7c2de13b08?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://images.unsplash.com/photo-1594489573454-3a9e7b2c4ed3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
                 category: "Margarine/Jam"
             },
             {
@@ -975,7 +1020,7 @@
                 name: "Curcuma Dring",
                 description: "Minuman sinom tradisional menyegarkan.",
                 price: 75000,
-                image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://images.unsplash.com/photo-1628245221620-2f47a544a827?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
                 category: "Minuman Ringan"
             },
             {
@@ -983,7 +1028,7 @@
                 name: "Misone",
                 description: "Minuman sinom tradisional menyegarkan.",
                 price: 30000,
-                image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                image: "https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
                 category: "Minuman Ringan"
             },
             {
@@ -1039,6 +1084,7 @@
         const checkoutBtn = document.getElementById('checkoutBtn');
         const checkoutModal = document.getElementById('checkoutModal');
         const checkoutForm = document.getElementById('checkoutForm');
+        const checkoutSpinner = document.getElementById('checkoutSpinner');
         const productGrid = document.querySelector('.product-grid');
         const filterBtns = document.querySelectorAll('.filter-btn');
         const notification = document.getElementById('notification');
@@ -1202,14 +1248,28 @@
             updateCart();
         }
 
-        // Fungsi untuk mengirim email (simulasi)
-        function sendEmail(orderData) {
-            // Dalam implementasi nyata, ini akan terhubung ke server dan API email
-            console.log('Mengirim email konfirmasi ke:', orderData.email);
-            console.log('Detail pesanan:', orderData);
+        // Fungsi untuk mengirim email order menggunakan EmailJS
+        function sendOrderEmail(orderData) {
+            // Format items untuk email
+            const itemsList = orderData.items.map(item => 
+                `${item.name} - ${item.quantity} x Rp ${item.price.toLocaleString('id-ID')} = Rp ${(item.quantity * item.price).toLocaleString('id-ID')}`
+            ).join('<br>');
             
-            // Simulasi pengiriman email
-            showNotification(`Terima kasih ${orderData.name}! Pesanan Anda telah diterima. Detail pesanan telah dikirim ke email: ${orderData.email}`);
+            // Template parameter untuk EmailJS
+            const templateParams = {
+                to_email: 'cempaka@bisnis.ukwms.ac.id', // Email perusahaan
+                from_name: orderData.name,
+                from_email: orderData.email,
+                phone: orderData.phone,
+                address: orderData.address,
+                notes: orderData.notes || 'Tidak ada catatan',
+                order_date: orderData.orderDate,
+                items: itemsList,
+                total_amount: 'Rp ' + orderData.total.toLocaleString('id-ID')
+            };
+            
+            // Kirim email menggunakan EmailJS
+            return emailjs.send('service_ptcempaka', 'template_order', templateParams);
         }
 
         // Event Listeners
@@ -1231,7 +1291,7 @@
             checkoutModal.style.display = 'flex';
         });
 
-        checkoutForm.addEventListener('submit', (e) => {
+        checkoutForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const orderData = {
@@ -1240,19 +1300,32 @@
                 phone: document.getElementById('customerPhone').value,
                 address: document.getElementById('customerAddress').value,
                 notes: document.getElementById('customerNotes').value,
-                items: cart,
+                items: [...cart], // Salin array cart
                 total: cart.reduce((total, item) => total + (item.price * item.quantity), 0),
                 orderDate: new Date().toLocaleString('id-ID')
             };
             
-            // Kirim email konfirmasi
-            sendEmail(orderData);
+            // Tampilkan loading spinner
+            checkoutSpinner.style.display = 'flex';
             
-            // Reset keranjang dan form
-            cart = [];
-            updateCart();
-            checkoutForm.reset();
-            checkoutModal.style.display = 'none';
+            try {
+                // Kirim email konfirmasi
+                await sendOrderEmail(orderData);
+                
+                // Reset keranjang dan form
+                cart = [];
+                updateCart();
+                checkoutForm.reset();
+                checkoutModal.style.display = 'none';
+                
+                showNotification(`Terima kasih ${orderData.name}! Pesanan Anda telah diterima. Kami akan menghubungi Anda dalam waktu 1x24 jam.`);
+            } catch (error) {
+                console.error('Error sending email:', error);
+                showNotification('Maaf, terjadi kesalahan saat mengirim pesanan. Silakan coba lagi atau hubungi kami langsung.');
+            } finally {
+                // Sembunyikan loading spinner
+                checkoutSpinner.style.display = 'none';
+            }
         });
 
         // Filter produk
